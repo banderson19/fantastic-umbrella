@@ -19,7 +19,11 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
-  Product.findOne()
+  Product.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
   .then(dbProductData => {
     if(!dbProductData) {
       res.status(404).json({ message: "no product with this data"})
